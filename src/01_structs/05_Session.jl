@@ -26,7 +26,8 @@ struct Session{D<:Object}
         response = HTTP.post(
             "$(wd.addr)/session",
             [("Content-Type" => "application/json; charset=utf-8")],
-            JSON3.write(Dict("desiredCapabilities" => wd.capabilities, wd.kw...)),
+            JSON3.write(Dict("capabilities" => 
+                Dict("firstMatch" => [wd.capabilities, wd.kw...]))),
         )
         @assert response.status == 200
         json = JSON3.read(response.body)
