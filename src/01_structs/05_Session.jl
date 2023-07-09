@@ -31,7 +31,7 @@ struct Session{D<:Object}
         )
         @assert response.status == 200
         json = JSON3.read(response.body)
-        new{typeof(json.value)}(addr, json.sessionId, json.value)
+        new{typeof(json.value)}(addr, json.value.sessionId, json.value)
     end
 end
 broadcastable(obj::Session) = Ref(obj)
